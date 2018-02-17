@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>React.js Hello World</title>
+	<style type="text/css">
+		.container{
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<div id="root">
+		
+	</div>
+<script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+	const rootElement = document.getElementById('root');
+    /*
+    Notes: PropTypes validation is ignored in production,
+    for class components propTypes could be added as static property of
+    the component itself
+    For functional component propTypes could be added 
+    as SayHelloAsFunction.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired
+    }
+    */
+	class SayHello extends React.Component{
+        static propTypes = {
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired          
+        }
+        render(){
+            const {firstName, lastName} = this.props;
+            return(
+                <div>
+                Hello, {firstName} {lastName}
+                </div>
+            )
+        }
+    }
+	const element = <SayHello firstName={true} />
+	ReactDOM.render(element, rootElement);	
+</script>
+</body>
+</html>
