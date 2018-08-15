@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React.js Hello World</title>
+    <style type="text/css">
+        .container {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    <script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root'); 
+        function Message({message}){ 
+            return (
+            <div>
+            {message ? 
+                (<div>{message}</div>) : 
+                (<div>No message</div>)
+            }
+            </div>
+            ); 
+        } 
+        const element = <Message message={null} />; 
+        ReactDOM.render(element, rootElement);
+    </script>
+</body>
+
+</html>
