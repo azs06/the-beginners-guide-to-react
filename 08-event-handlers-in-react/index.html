@@ -38,22 +38,44 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
     <script type="text/babel">
         const rootElement = document.getElementById('root'); 
-        function Box({style, size, className = '', ...rest}){
-            const sizeClassName = size ? `box--${size}` : '';
+        const state = {
+            eventCount: 0,
+            userName: ''
+        };
+        function App(){
             return(
-                <div 
-                className={`box ${className} ${sizeClassName}`}
-                style={{paddingLeft: '20px', ...style}}
-                {...rest}
-                />
+                <div>
+                    <p>
+                    There have been {state.eventCount} events
+                    </p>
+                    <p>
+                        <button onClick={increment}> ▶️ </button>
+                    </p>
+                    <p>You typed {state.userName}</p> 
+                    <input onChange={updateUserName} />   
+                </div>
             )
         }
-        const element = <div>
-            <Box size="small" style={{backgroundColor: 'lightblue'}}> small box </Box>
-            <Box size="large" style={{backgroundColor: 'purple'}}> large box </Box>
-            <Box size="medium" style={{backgroundColor: 'green'}}> medium box </Box>
-        </div>; 
-        ReactDOM.render(element, rootElement);
+
+        function increment(){
+            setState({
+                eventCount: state.eventCount + 1
+            })
+        }
+        function updateUserName(event){
+            setState({
+                userName: event.target.value
+            })
+        }
+
+        function setState(newState){
+            Object.assign(state, newState);
+            renderApp();
+        }
+        function renderApp(){
+            ReactDOM.render(<App />, rootElement);
+        }
+        renderApp();
     </script>
 </body>
 
