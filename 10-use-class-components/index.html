@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React.js Hello World</title>
+    <style type="text/css">
+        .container {
+            font-size: 24px;
+        }
+        .box{
+           border: 1px solid #ccc; 
+           display: block; 
+           height: 50px;
+           width: 50px;
+        }
+        .box--medium{
+            width: 120px;
+            height: 120px;
+        }
+        .box--large{
+            width: 180px;
+            height: 180px;
+        }
+        .box--small{
+            width: 60px;
+            height: 60px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+    <script src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root'); 
+        class Counter extends React.Component{
+            /* constructor(...args){
+                super(...args);
+                this.state = {
+                    count: 0
+                }
+            }
+            handleClick(){
+                this.setState( ({count}) => ({
+                    count: count + 1
+                }))
+            } */
+            //public class fields
+            state = { count: 0 }
+            handleClick = ()=>{
+                this.setState( ({count}) => ({
+                    count: count + 1
+                }))               
+            }
+            render(){
+                return(
+                    <div style={{
+                        textAlign: 'center'
+                    }}>
+                    <button style={{
+                        padding: '5px 10px',
+                        border: '1px solid',
+                        fontSize: '2rem'
+                    }} onClick={this.handleClick.bind(this)}>
+                        {this.state.count}
+                    </button>
+                    </div>
+                )
+                
+            }
+        }
+        function renderApp(){
+            ReactDOM.render(<Counter />, rootElement);
+        }
+        renderApp();
+    </script>
+</body>
+
+</html>
